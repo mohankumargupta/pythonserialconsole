@@ -1,13 +1,13 @@
 # -*- mode: python -*-
-
 from kivy.deps import sdl2,glew
 
 block_cipher = None
 
-a = Analysis(['bullsandcows.py'],
-             pathex=['C:\\Users\\mohan\\Developer\\bullsandcows'],
+
+a = Analysis(['pythonserialconsole.py'],
+             pathex=['C:\\Users\\mohan\\Developer\\pythonserialconsole'],
              binaries=None,
-             datas=[],
+             datas=None,
              hiddenimports=[],
              hookspath=[],
              runtime_hooks=[],
@@ -17,13 +17,13 @@ a = Analysis(['bullsandcows.py'],
              cipher=block_cipher)
 pyz = PYZ(a.pure, a.zipped_data,
              cipher=block_cipher)
-exe = EXE(pyz, Tree('C:\\Users\\mohan\\Developer\\bullsandcows'),
+exe = EXE(pyz, Tree('C:\\Users\\mohan\\Developer\\pythonserialconsole'),
           a.scripts,
           a.binaries,
           a.zipfiles,
           a.datas,
           *[Tree(p) for p in (sdl2.dep_bins + glew.dep_bins)],
-          name='bullsandcows',
+          name='pythonserialconsole',
           debug=False,
           strip=False,
           upx=True,
