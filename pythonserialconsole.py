@@ -11,6 +11,10 @@ from kivy.uix.widget import Widget
 from kivy.uix.textinput import TextInput
 from kivy.uix.popup import Popup
 from kivy.uix.spinner import Spinner
+from kivy.uix.actionbar import ActionBar
+from kivy.uix.actionbar import ActionView
+from kivy.uix.actionbar import ActionButton
+from kivy.uix.actionbar import ActionPrevious
 from kivy.graphics import *
 from kivy.properties import NumericProperty
 from kivy.properties import ListProperty
@@ -75,6 +79,8 @@ class PythonSerialConsole(BoxLayout):
 					buttonText.text = "Disconnect"
 					self.isSerialOpen = 1
 
+	def clearScreen(self):
+		self.receiveMessageTextInput = ""
 
 
 class PythonSerialConsoleWidget(GridLayout):
