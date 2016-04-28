@@ -26,10 +26,21 @@ class SimpleSerial:
 			return self.ser.read(1)		
 
 	def readline(self):
-		if (self.ser == None):
+		if self.ser == None:
 			return None
+
 		else:
-			return self.ser.readline()
+			try:
+				data = self.ser.readline()
+
+			except serial.SerialException:
+				return None
+			return data
+
+	def is_open(self):
+		if self.ser == None:
+			return False
+		return self.ser.is_open
 
 	def getAllSerialPorts(self):
 		ports = ["COM{}".format(i) for i in range(256)]
@@ -46,11 +57,10 @@ class SimpleSerial:
 def readSerialPort(simpleport, receiveText, queue):
 	print("Started")
 	while True:
-		data = simpleport.readline()      
-		if (data !=None and data):  
-			#receiveText = receiveText + data
-			#print(receiveText)
-			queue.put(data)
+		if simpleport.is_open():
+			data = simpleport.readline()
+			if (data !=None and data):
+				queue.put(data)
 
 
 '''
