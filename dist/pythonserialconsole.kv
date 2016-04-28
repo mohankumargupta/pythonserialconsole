@@ -1,0 +1,65 @@
+#:kivy 1.9.1
+
+<PythonSerialConsole>:
+  orientation: 'vertical'
+  canvas.before:
+    Color: 
+      rgb: (0.95,0.95,0.95,1)
+    Rectangle:
+      pos: self.pos
+      size: self.size
+  BoxLayout:
+    size_hint_y: None
+    height:60
+    ActionBar:
+      pos_hint: {'top':1}
+      ActionView:
+        ActionPrevious:
+        ActionOverflow:
+        ActionButton:
+          text: "Clear"
+          on_press: root.clearScreen()
+  BoxLayout:
+    padding:5
+    spacing:5
+    size_hint_y: None
+    height:50
+    TextInput:
+      id: "textinput"
+      text:root.sendMessageTextInput
+      size_hint:(0.9,1)
+      multiline: False
+      background_color:(1,1,1,1)
+    Button:
+      text:"Send"
+      size_hint:(0.1,1)
+      on_press: root.send_button_pressed()
+  RelativeLayout:   
+    TextInput:
+      padding:2
+      spacing:2
+      multiline: True
+      text: root.receiveMessageTextInput
+      readonly: True
+      background_normal: ""
+  RelativeLayout:
+    size_hint_y: None
+    height:50
+    Spinner:
+      id: "port"
+      text: "Select Port"
+      values: root.comPorts
+      size_hint:(0.3,0.5)
+      pos_hint:({'x':0, 'center_y':0.5})
+    Spinner:
+      id: "baud"
+      text: "Select baud"
+      values: ("115200","9600","25000")
+      size_hint:(0.3,0.5)
+      pos_hint:({'x':0.35, 'center_y':0.5})
+    Button:
+      id: "connect"
+      text:"Connect"
+      size_hint:(0.3,0.5)
+      pos_hint:({'x':0.7, 'center_y':0.5})      
+      on_press: root.button_pressed()
